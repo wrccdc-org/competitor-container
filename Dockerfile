@@ -6,7 +6,6 @@ python3-pip zsh emacs python3-full python3-pip git elinks2 emacs rclone rsync mc
 && wget -q https://packages.microsoft.com/config/debian/$VERSION_ID/packages-microsoft-prod.deb \
 && dpkg -i packages-microsoft-prod.deb \
 && rm packages-microsoft-prod.deb \
-&& apt-get update && apt-get install -y powershell
 && wget -q https://github.com/PowerShell/PowerShell/releases/download/v7.3.8/powershell_7.3.8-1.deb_amd64.deb \
 && dpkg -i powershell_7.3.8-1.deb_amd64.deb \
 && pip3 install pipx --break-system-packages

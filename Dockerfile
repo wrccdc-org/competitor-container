@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update -y && apt-get install -y curl wget \
-&& wget https://packages.microsoft.com/config/debian/${DEBIAN_VERSION}/packages-microsoft-prod.deb \
+&& wget https://packages.microsoft.com/config/debian/${VERSION_ID}/packages-microsoft-prod.deb \
 && dpkg -i packages-microsoft-prod.deb \
 && rm packages-microsoft-prod.deb \
 && apt-get install -y nix-bin locales curl wget nmap nano vim msmtp msmtp-mta python3-full screen irssi git testdisk tcpdump tshark \

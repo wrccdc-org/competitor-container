@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 SHELL ["/bin/bash", "-c"]
 
-RUN apt-get update -y && apt-get install -y curl wget \
+RUN source /etc/os-release && apt-get update -y && apt-get install -y curl wget \
 && wget https://packages.microsoft.com/config/debian/${VERSION_ID}/packages-microsoft-prod.deb \
 && dpkg -i packages-microsoft-prod.deb \
 && rm packages-microsoft-prod.deb \

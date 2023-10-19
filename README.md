@@ -21,6 +21,7 @@ The competitor container. This container is available to teams during competitio
 - iperf
 - wget/elinks/curl
 - git
+- nix
 
 ## Adding tools and features
 

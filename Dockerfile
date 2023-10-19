@@ -35,6 +35,7 @@ RUN touch ~/.zshrc \
 && pipx ensurepath \
 && sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" \
 && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" \
-&& echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> ~/.zshrc
+&& echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >> ~/.zshrc \
+&& echo 'export PATH="$PATH:/home/blueteam/.local/bin"' >> ~/.zshrc
 # note: https://gitee.com/chuanjiao10/kasini3000_agent_linux/raw/master/debian12_install_powershell.bash
 

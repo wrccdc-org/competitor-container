@@ -16,7 +16,10 @@ The competitor container. This container is available to teams during competitio
 - vim
 - nano
 - sendmail (for testing smtp services)
-- python3 
+- python3
+- dig
+- nslookup
+- mutt
 - mtr
 - iperf
 - wget/elinks/curl

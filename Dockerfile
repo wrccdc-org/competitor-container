@@ -19,7 +19,8 @@ python3-pip zsh python3-full python3-pip pipx rsync rclone zip unzip unar p7zip-
 && mkdir -p /home/linuxbrew/ && chmod -Rv 777 /home/linuxbrew/ && useradd -ms /usr/bin/zsh blueteam \
 && mkdir -p /nix && chown -R blueteam:blueteam /nix
 
-RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
+&& install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 
 
 USER blueteam
@@ -29,8 +30,7 @@ WORKDIR /home/blueteam
 # FROM HERE WE START WHAT THE USER SPACE LOOKS LIKE
 
 # Install nix channels and update
-RUN nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs && nix-channel --update \
-&& install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+RUN nix-channel --add https://nixos.org/channels/nixpkgs-unstable nixpkgs && nix-channel --update
 
 ENV LANG en_US.utf8
 RUN touch ~/.zshrc \

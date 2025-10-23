@@ -13,11 +13,14 @@ RUN source /etc/os-release && apt-get update -y && apt-get install -y curl wget 
 && dpkg -i packages-microsoft-prod.deb \
 && rm packages-microsoft-prod.deb \
 && apt-get install -y nix-bin locales curl wget nmap nano vim msmtp msmtp-mta mutt dnsutils python3-full screen \
-irssi git testdisk tcpdump tshark traceroute tftp ncftp mc yafc ftp mosh ncat openssl sqlite3 git elinks emacs \
+irssi git testdisk tcpdump tshark traceroute busybox ncftp mc yafc ftp mosh ncat openssl sqlite3 git elinks emacs \
 python3-pip zsh python3-full python3-pip pipx rsync rclone zip unzip unar p7zip-full iperf3 mtr \
 && rm -rf /var/lib/apt/lists/*  && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8 \
 && mkdir -p /home/linuxbrew/ && chmod -Rv 777 /home/linuxbrew/ && useradd -ms /usr/bin/zsh blueteam \
 && mkdir -p /nix && chown -R blueteam:blueteam /nix
+
+# temporary workaround for missing tools because of debian 13
+RUN for tool in tftp dos2unix unix2dos ssl_client ftpget ftpput cal; do ln -s /bin/busybox /usr/local/bin/$tool; done
 
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
 && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl

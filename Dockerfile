@@ -19,6 +19,9 @@ python3-pip zsh python3-full python3-pip pipx rsync rclone zip unzip unar p7zip-
 && mkdir -p /home/linuxbrew/ && chmod -Rv 777 /home/linuxbrew/ && useradd -ms /usr/bin/zsh blueteam \
 && mkdir -p /nix && chown -R blueteam:blueteam /nix
 
+# temporary workaround for missing tools because of debian 13
+RUN for tool in tftp dos2unix unix2dos ssl_client ftpget ftpput cal; do ln -s /bin/busybox /usr/local/bin/$tool; done
+
 RUN curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" \
 && install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 

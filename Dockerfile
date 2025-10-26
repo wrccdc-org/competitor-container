@@ -65,8 +65,8 @@ FROM base AS final
 #    dpkg -i packages-microsoft-prod.deb
 RUN apt-get update && apt-get install -y --no-install-recommends \
       bash-completion busybox dnsutils dos2unix elinks emacs file ftp iperf3 \
-      irssi less man-db manpages mc mosh msmtp msmtp-mta mtr mutt nano ncal \
-      ncat ncftp nmap openssh-client openssl p7zip-full patch psmisc \
+      iputils-ping irssi less man-db manpages mc mosh msmtp msmtp-mta mtr mutt \
+      nano ncal ncat ncftp nmap openssh-client openssl p7zip-full patch psmisc \
       python3-full python3-pip rclone rsync screen sqlite3 tcpdump testdisk \
       tftp-hpa traceroute tshark unar unzip vim xxd yafc zip && \
     rm -rf /var/lib/apt/lists/*

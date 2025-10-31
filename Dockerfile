@@ -65,11 +65,17 @@ FROM base AS final
 #    dpkg -i packages-microsoft-prod.deb
 RUN apt-get update && apt-get install -y --no-install-recommends \
       bash-completion busybox dnsutils dos2unix elinks emacs file ftp iperf3 \
-      iputils-ping irssi less man-db manpages mc mosh msmtp msmtp-mta mtr mutt \
-      nano ncal ncat ncftp nmap openssh-client openssl p7zip-full patch psmisc \
-      python3-full python3-pip rclone rsync screen sqlite3 tcpdump testdisk \
-      tftp-hpa traceroute tshark unar unzip vim xxd yafc zip && \
+      iputils-ping ipython3 irssi less man-db manpages mc mosh msmtp msmtp-mta \
+      mtr mutt nano ncal ncat ncftp nmap openssh-client openssl p7zip-full \
+      patch psmisc python3-cryptography python3-full python3-pip rclone rsync \
+      screen sqlite3 tcpdump testdisk tftp-hpa traceroute tshark unar unzip \
+      vim xxd yafc zip && \
     rm -rf /var/lib/apt/lists/*
+
+RUN cd /run && \
+    curl -fsSLO "https://github.com/PowerShell/PowerShell/releases/download/v7.6.0-preview.5/powershell-preview_7.6.0-preview.5-1.deb_amd64.deb" && \
+    dpkg -i "powershell-preview_7.6.0-preview.5-1.deb_amd64.deb" && \
+    ln -s /usr/bin/pwsh{-preview,}
 
 # Add busybox symlinks for any otherwise missing tools
 RUN busybox --install

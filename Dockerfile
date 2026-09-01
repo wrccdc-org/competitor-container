@@ -58,24 +58,17 @@ RUN touch ~/.zshrc && mkdir -p .local/bin && \
 # Final result
 FROM base AS final
 
-# Once Microsoft releases powershell for trixie, uncomment this and add
-# powershell to the packages below.
-#RUN source /etc/os-release && cd /run && \
-#    curl -O https://packages.microsoft.com/config/debian/${VERSION_ID}/packages-microsoft-prod.deb && \
-#    dpkg -i packages-microsoft-prod.deb
+RUN source /etc/os-release && cd /run && \
+    curl -O https://packages.microsoft.com/config/debian/13/packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb
 RUN apt-get update && apt-get install -y --no-install-recommends \
       bash-completion busybox dnsutils dos2unix elinks emacs file ftp iperf3 \
       iputils-ping ipython3 irssi less man-db manpages mc mosh msmtp msmtp-mta \
       mtr mutt nano ncal ncat ncftp nmap openssh-client openssl p7zip-full \
-      patch psmisc python3-cryptography python3-full python3-pip rclone rsync \
-      screen sqlite3 tcpdump testdisk tftp-hpa traceroute tshark unar unzip \
+      patch powershell psmisc python3-cryptography python3-full python3-pip rclone \
+      rsync screen sqlite3 tcpdump testdisk tftp-hpa traceroute tshark unar unzip \
       vim xxd yafc zip && \
     rm -rf /var/lib/apt/lists/*
-
-RUN cd /run && \
-    curl -fsSLO "https://github.com/PowerShell/PowerShell/releases/download/v7.6.0-preview.5/powershell-preview_7.6.0-preview.5-1.deb_amd64.deb" && \
-    dpkg -i "powershell-preview_7.6.0-preview.5-1.deb_amd64.deb" && \
-    ln -s /usr/bin/pwsh{-preview,}
 
 # Add busybox symlinks for any otherwise missing tools
 RUN busybox --install
